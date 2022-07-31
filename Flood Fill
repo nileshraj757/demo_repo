@@ -1,0 +1,25 @@
+# 733
+
+
+class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        int center = image[sr][sc];
+        solver(sr,sc,image,newColor,center);
+        return image;
+    }
+    
+    void solver(int sr,int sc,vector<vector<int>> &image,int newColor,int center)
+    {   
+        if(sr<0 || sr>=image.size() || sc<0 || sc>=image[0].size() || image[sr][sc]!=center || image[sr][sc]==newColor)
+            return ;
+        image[sr][sc]=newColor;
+        
+        solver(sr+1,sc,image,newColor,center);
+        solver(sr,sc+1,image,newColor,center);
+        solver(sr-1,sc,image,newColor,center);
+        solver(sr,sc-1,image,newColor,center);
+        
+        
+    }
+};
